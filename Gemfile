@@ -14,3 +14,5 @@ gem "rubocop", "~> 1.21"
 gem "minitest-power_assert"
 
 gem "bundler"
+
+gem "make"

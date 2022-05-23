@@ -7,6 +7,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
+    make (0.3.1)
     minitest (5.15.0)
     minitest-power_assert (0.3.1)
       minitest
@@ -39,6 +40,7 @@ PLATFORMS
 DEPENDENCIES
   bundler
   hexlet_code!
+  make
   minitest (~> 5.0)
   minitest-power_assert
   rake (~> 13.0)
