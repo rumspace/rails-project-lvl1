@@ -20,7 +20,7 @@ jobs:
         ruby-version: 3.0.x
       
     - name: Install dependencies
-      run: make
+      run: make install
 
     - name: Running rubocop for /lib
-      run: lint
+      run: make lint
