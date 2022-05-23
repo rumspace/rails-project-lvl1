@@ -1,5 +1,4 @@
 install:
-	gem install bundler
 	bundle install
 
 lint:
