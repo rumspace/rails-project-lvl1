@@ -1,6 +1,3 @@
-bundle:
-	bundle install
-
 install:
 	bundle install
 

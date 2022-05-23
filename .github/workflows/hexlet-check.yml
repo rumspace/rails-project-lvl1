@@ -25,3 +25,5 @@ jobs:
         uses: hexlet/project-action@release
         with:
           hexlet-id: ${{ secrets.HEXLET_ID }}
+      - name: Run linter (rubocop) in lib
+        run: make lint
