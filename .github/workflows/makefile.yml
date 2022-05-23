@@ -14,8 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       
-    # - name: Install dependencies
-    #   run: make
+    - name: Install dependencies
+      run: make
 
-    - name: Running rubocop for lib
+    - name: Running rubocop for /lib
       run: lint
