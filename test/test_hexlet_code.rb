@@ -8,8 +8,8 @@ class TestHexletCode < Minitest::Test
   end
 
   def test_string
-    assert { HexletCode::Tag.build('br') == "<br>" }
-    assert { HexletCode::Tag.build('img', src: 'path/to/image') == "<img src=\"path/to/image\">" }
-    assert { HexletCode::Tag.build('input', type: 'submit', value: 'Save') == "<input type=\"submit\" value=\"Save\">" }
+    assert { HexletCode::Tag.build("br") == "<br>" }
+    assert { HexletCode::Tag.build("img", src: "path/to/image") == "<img src=\"path/to/image\">" }
+    assert { HexletCode::Tag.build("input", type: "submit", value: "Save") == "<input type=\"submit\" value=\"Save\">" }
   end
 end
