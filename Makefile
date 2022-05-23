@@ -2,4 +2,7 @@ install:
 	bundle install
 
 lint:
-	bundle exec rubocop lib
+	bundle exec rubocop
+
+lint-fix:
+	bundle exec rubocop -A
