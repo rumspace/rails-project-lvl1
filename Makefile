@@ -6,3 +6,6 @@ lint:
 
 lint-fix:
 	bundle exec rubocop -A
+
+minitest:
+	ruby -Ilib:test test/test_hexlet_code.rb

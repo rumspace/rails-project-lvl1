@@ -22,5 +22,8 @@ jobs:
     - name: Install dependencies
       run: make install
 
-    - name: Running rubocop for /lib
+    - name: Running Rubocop linter
       run: make lint
+
+    - name: Testing with Minitest
+      run: make minitest
