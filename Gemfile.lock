@@ -37,6 +37,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bundler
   hexlet_code!
   minitest (~> 5.0)
   minitest-power_assert
