@@ -11,8 +11,6 @@ module HexletCode
     def self.build(*params)
       return nil if params.nil?
 
-      # HexletCode::Tag.build('input', type: 'submit', value: 'Save')
-      # <input type="submit" value="Save">
       tag_string = [params.shift]
       unless params.empty?
         tag_string.concat params.first.each_with_object([]) { |attribute, result|
@@ -22,5 +20,13 @@ module HexletCode
 
       "<#{tag_string.join(" ")}>"
     end
+  end
+
+  def self.form_for(user, url=nil, &block)
+    action = url ? "\"#{url[:url]}\"" : '"#"'
+    method = '"post"'
+    
+    form_string = ["<form", "action=#{action}\"", "method=#{method}\">"]
+    form_string.join(" ") + "\n</form>"
   end
 end
