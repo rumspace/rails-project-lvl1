@@ -22,11 +22,11 @@ module HexletCode
     end
   end
 
-  def self.form_for(user, url=nil, &block)
+  def self.form_for(_user, url = nil)
     action = url ? "\"#{url[:url]}\"" : '"#"'
     method = '"post"'
-    
-    form_string = ["<form", "action=#{action}\"", "method=#{method}\">"]
-    form_string.join(" ") + "\n</form>"
+
+    form_string = ["<form", "action=#{action}", "method=#{method}>"]
+    "#{form_string.join(" ")}\n</form>"
   end
 end

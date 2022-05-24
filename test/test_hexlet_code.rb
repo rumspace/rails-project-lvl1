@@ -4,7 +4,6 @@ require "test_helper"
 
 class TestHexletCode < Minitest::Test
   User = Struct.new(:name, :job, keyword_init: true)
-  user = User.new name: 'rob'
 
   def test_that_it_has_a_version_number
     refute_nil ::HexletCode::VERSION
@@ -17,11 +16,13 @@ class TestHexletCode < Minitest::Test
   end
 
   def test_form_for
-    user = User.new name: 'rob'
+    user = User.new name: "rob"
 
     assert do
-      HexletCode.form_for user do |f| end == "<form action=\"#\" method=\"post\">\n</form>"
+      HexletCode.form_for(user) { |f| } == "<form action=\"#\" method=\"post\">\n</form>"
     end
-    assert { HexletCode.form_for 'user', url: '/users' { |f| } == "<form action=\"/users\" method=\"post\">\n</form>" }
+    assert do
+      HexletCode.form_for(user, url: "/users") { |f| } == "<form action=\"/users\" method=\"post\">\n</form>"
+    end
   end
 end
