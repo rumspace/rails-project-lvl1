@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "hexlet_code/version"
+require_relative "form_for_methods"
 
 # DSL form generator
 module HexletCode
@@ -22,11 +23,18 @@ module HexletCode
     end
   end
 
-  def self.form_for(_user, url = nil)
-    action = url ? "\"#{url[:url]}\"" : '"#"'
-    method = '"post"'
+  def self.form_for(user, url = nil, &block)
+    autoload(:FormForMethods, "form_for_methods.rb")
+    user.class.include(FormForMethods)
 
-    form_string = ["<form", "action=#{action}", "method=#{method}>"]
-    "#{form_string.join(" ")}\n</form>"
+    action = url ? "#{url[:url]}" : "#"
+    method = "post"
+
+    form_string = ["<form", "action=\"#{action}\"", "method=\"#{method}\">"]
+    form_string = form_string.join(" ")
+
+    yield
+
+    form_string.concat("\n</form>")
   end
 end

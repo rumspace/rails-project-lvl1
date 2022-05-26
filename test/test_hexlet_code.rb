@@ -4,6 +4,7 @@ require "test_helper"
 
 class TestHexletCode < Minitest::Test
   User = Struct.new(:name, :job, :gender, keyword_init: true)
+  # user = User.new name: "rob", job: "hexlet", gender: "m"
 
   def test_that_it_has_a_version_number
     refute_nil ::HexletCode::VERSION
@@ -26,7 +27,7 @@ class TestHexletCode < Minitest::Test
     end
   end
 
-  def test_form_for_input
+  def test_input
     user = User.new name: "rob", job: "hexlet", gender: "m"
 
     form_string = HexletCode.form_for user do |f|
@@ -35,9 +36,9 @@ class TestHexletCode < Minitest::Test
     end
 
     result = '<form action="#" method="post">
-      <input name="name" type="text" value="rob">
-      <textarea cols="20" rows="40" name="job">hexlet</textarea>
-    </form>'
+                  <input name="name" type="text" value="rob">
+                  <textarea cols="20" rows="40" name="job">hexlet</textarea>
+              </form>'
 
     assert { form_string == result }
 
@@ -45,7 +46,7 @@ class TestHexletCode < Minitest::Test
       f.input :name
       f.input :job, as: :text
       f.input :age # Поля age у пользователя нет
-      f.submit
+      # f.submit
     end
 
     assert_raise(NoMethodError) { form_string }
