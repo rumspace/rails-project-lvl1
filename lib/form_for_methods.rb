@@ -2,7 +2,7 @@
 
 # Module to include into object sended to a form_for method of HexletCode module.
 module FormForMethods
-  def input(field, as = nil)
+  def self.input(field, as = nil)
     # Example output
     # <input name="name" type="text" value="rob">
     # <textarea cols="20" rows="40" name="job">hexlet</textarea>

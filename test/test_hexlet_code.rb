@@ -3,7 +3,23 @@
 require "test_helper"
 
 class TestHexletCode < Minitest::Test
-  User = Struct.new(:name, :job, :gender, keyword_init: true)
+  User = Struct.new(:name, :job, :gender, keyword_init: true) do
+    def input(field, as = nil)
+      # Example output
+      # <input name="name" type="text" value="rob">
+      # <textarea cols="20" rows="40" name="job">hexlet</textarea>
+      if as == :text
+        cols = 20
+        rows = 20
+        value = public_send(field)
+        "<textarea cols=\"#{cols}\" rows=\"40\" name=\"#{field}\">#{value}</textarea>"
+      else
+        type = "text"
+        value = public_send(field)
+        "<input name=\"#{field}\" type=\"#{type}\" value=\"#{value}\">"
+      end
+    end
+  end
   # user = User.new name: "rob", job: "hexlet", gender: "m"
 
   def test_that_it_has_a_version_number
