@@ -6,34 +6,25 @@ require_relative "hexlet_code/version"
 module HexletCode
   class Error < StandardError; end
 
-  # Form generator for tags
+  # HTML tags generator
   class Tag
-    def self.build(*params)
-      return nil if params.nil?
-
-      tag_string = [params.shift]
-      unless params.empty?
-        tag_string.concat params.first.each_with_object([]) { |attribute, result|
-                            result << "#{attribute.first}=\"#{attribute.last}\""
-                          }
-      end
-
-      "<#{tag_string.join(" ")}>"
-    end
+    autoload(:TagGenerator, "hexlet_code/tag_generator.rb")
+    extend TagGenerator
   end
 
-  def self.form_for(user, url = nil, &block)
-    autoload(:FormForMethods, "form_for_methods.rb")
-    # user.class.include(FormForMethods)
+  # form generator
+  def self.form_for(user, url = nil)
+    autoload(:FieldGenerator, "hexlet_code/field_generator.rb")
 
     action = url ? (url[:url]).to_s : "#"
     method = "post"
+    form = [Tag.build("form", action: action, method: method)]
 
-    form_string = ["<form", "action=\"#{action}\"", "method=\"#{method}\">"]
-    form_string = form_string.join(" ")
+    field_generator = FieldGenerator.new(user)
+    yield(field_generator) if block_given?
 
-    yield(FormForMethods)
-
-    form_string.concat("\n</form>")
+    form.concat(field_generator.generated_fields) unless field_generator.generated_fields.empty?
+    form << ("\n</form>")
+    form.join("")
   end
 end

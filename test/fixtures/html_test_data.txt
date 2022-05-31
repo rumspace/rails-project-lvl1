@@ -1,0 +1,3 @@
+<br>
+<img src="path/to/image">
+<input type="submit" value="Save">
