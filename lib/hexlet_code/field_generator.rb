@@ -10,17 +10,24 @@ class FieldGenerator
   end
 
   def input(field, as_optional = nil)
-    # example output <input name="name" type="text" value="rob">
-    # example output <textarea cols="20" rows="40" name="job">hexlet</textarea>
+    label_string = "\n<label for=\"#{field}\">#{field.capitalize}</label>"
+
     if as_optional
       cols = 20
       rows = 40
       value = @data.public_send(field)
+      @generated_fields << label_string
       @generated_fields << "\n<textarea cols=\"#{cols}\" rows=\"#{rows}\" name=\"#{field}\">#{value}</textarea>"
     else
       type = "text"
       value = @data.public_send(field)
-      @generated_fields << "\n<input name=\"#{field}\" type=\"#{type}\" value=\"#{value}\">"
+      value_string = value ? " value=\"#{value}\"" : ""
+      @generated_fields << label_string
+      @generated_fields << "\n<input name=\"#{field}\" type=\"#{type}\"#{value_string}>"
     end
+  end
+
+  def submit
+    @generated_fields << "\n<input name=\"commit\" type=\"submit\" value=\"Save\">"
   end
 end

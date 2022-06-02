@@ -9,7 +9,8 @@ class TestHexletCode < Minitest::Test
     @fixtures_tag = File.read("#{File.dirname(__FILE__)}/fixtures/html_test_tag.txt").split("\r\n")
     @fixture_form1 = File.read("#{File.dirname(__FILE__)}/fixtures/html_test_form1.txt").delete("\r")
     @fixture_form2 = File.read("#{File.dirname(__FILE__)}/fixtures/html_test_form2.txt").delete("\r")
-    @fixture_form_input = File.read("#{File.dirname(__FILE__)}/fixtures/html_test_form_input1.txt").delete("\r")
+    @fixture_form_input1 = File.read("#{File.dirname(__FILE__)}/fixtures/html_test_form_input1.txt").delete("\r")
+    @fixture_form_input2 = File.read("#{File.dirname(__FILE__)}/fixtures/html_test_form_input2.txt").delete("\r")
   end
 
   def test_that_it_has_a_version_number
@@ -40,7 +41,7 @@ class TestHexletCode < Minitest::Test
       f.input :name
       f.input :job, as: :text
     end
-    assert { form_string == @fixture_form_input }
+    assert { form_string == @fixture_form_input1 }
   end
 
   def test_form_input_error
@@ -55,4 +56,17 @@ class TestHexletCode < Minitest::Test
       end
     end
   end
+
+  def test_form_label_submit
+    user = User.new job: 'hexlet'
+
+    form_string = HexletCode.form_for user do |f|
+      f.input :name
+      f.input :job
+      f.submit
+    end
+
+    assert { form_string == @fixture_form_input2 }
+  end
+
 end
