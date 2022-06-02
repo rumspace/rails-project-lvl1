@@ -58,7 +58,7 @@ class TestHexletCode < Minitest::Test
   end
 
   def test_form_label_submit
-    user = User.new job: 'hexlet'
+    user = User.new job: "hexlet"
 
     form_string = HexletCode.form_for user do |f|
       f.input :name
@@ -68,5 +68,4 @@ class TestHexletCode < Minitest::Test
 
     assert { form_string == @fixture_form_input2 }
   end
-
 end
