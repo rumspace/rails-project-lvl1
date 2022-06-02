@@ -16,11 +16,11 @@ class FieldGenerator
       cols = 20
       rows = 40
       value = @data.public_send(field)
-      @generated_fields << "\n\t<textarea cols=\"#{cols}\" rows=\"#{rows}\" name=\"#{field}\">#{value}</textarea>"
+      @generated_fields << "\n<textarea cols=\"#{cols}\" rows=\"#{rows}\" name=\"#{field}\">#{value}</textarea>"
     else
       type = "text"
       value = @data.public_send(field)
-      @generated_fields << "\n\t<input name=\"#{field}\" type=\"#{type}\" value=\"#{value}\">"
+      @generated_fields << "\n<input name=\"#{field}\" type=\"#{type}\" value=\"#{value}\">"
     end
   end
 end
