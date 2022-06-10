@@ -2,7 +2,7 @@
 
 # HexletCode
 
-DSL form generator.
+DSL form generator. BLAHBLAH
 This gem simplifies your forms generation similar to SimpleForm.
 
 ## Installation
