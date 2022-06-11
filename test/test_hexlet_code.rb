@@ -6,31 +6,21 @@ class TestHexletCode < Minitest::Test
   User = Struct.new(:name, :job, :gender, keyword_init: true)
 
   def setup
-    @fixtures_tag = File.read("#{File.dirname(__FILE__)}/fixtures/html_test_tag.txt").split("\r\n")
-    @fixture_form1 = File.read("#{File.dirname(__FILE__)}/fixtures/html_test_form1.txt").delete("\r")
-    @fixture_form2 = File.read("#{File.dirname(__FILE__)}/fixtures/html_test_form2.txt").delete("\r")
-    @fixture_form_input1 = File.read("#{File.dirname(__FILE__)}/fixtures/html_test_form_input1.txt").delete("\r")
-    @fixture_form_input2 = File.read("#{File.dirname(__FILE__)}/fixtures/html_test_form_input2.txt").delete("\r")
+    @fixtures = TestHelper.load_test_fixtures
   end
 
   def test_that_it_has_a_version_number
     refute_nil ::HexletCode::VERSION
   end
 
-  def test_tag_build
-    assert { HexletCode::Tag.build("br") == @fixtures_tag[0] }
-    assert { HexletCode::Tag.build("img", src: "path/to/image") == @fixtures_tag[1] }
-    assert { HexletCode::Tag.build("input", type: "submit", value: "Save") == @fixtures_tag[2] }
-  end
-
   def test_form_for
     user = User.new name: "rob"
 
     assert do
-      HexletCode.form_for(user) { |f| } == @fixture_form1
+      HexletCode.form_for(user) { |f| } == @fixtures[0]
     end
     assert do
-      HexletCode.form_for(user, url: "/users") { |f| } == @fixture_form2
+      HexletCode.form_for(user, url: "/users") { |f| } == @fixtures[1]
     end
   end
 
@@ -41,7 +31,7 @@ class TestHexletCode < Minitest::Test
       f.input :name
       f.input :job, as: :text
     end
-    assert { form_string == @fixture_form_input1 }
+    assert { form_string == @fixtures[2] }
   end
 
   def test_form_input_error
@@ -66,6 +56,6 @@ class TestHexletCode < Minitest::Test
       f.submit
     end
 
-    assert { form_string == @fixture_form_input2 }
+    assert { form_string == @fixtures[3] }
   end
 end

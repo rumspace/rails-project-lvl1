@@ -6,25 +6,14 @@ require_relative "hexlet_code/version"
 module HexletCode
   class Error < StandardError; end
 
-  # HTML tags generator
-  class Tag
-    autoload(:TagGenerator, "hexlet_code/tag_generator.rb")
-    extend TagGenerator
-  end
-
   # form generator
   def self.form_for(user, url = nil)
-    autoload(:FieldGenerator, "hexlet_code/field_generator.rb")
+    autoload(:FormGenerator, "hexlet_code/form_generator.rb")
 
-    action = url ? (url[:url]).to_s : "#"
-    method = "post"
-    form = [Tag.build("form", action: action, method: method)]
-
-    field_generator = FieldGenerator.new(user)
-    yield(field_generator) if block_given?
-
-    form.concat(field_generator.generated_fields) unless field_generator.generated_fields.empty?
-    form << ("\n</form>")
-    form.join("")
+    form_generator = FormGenerator.new(user)
+    form_generator.open_form(url)
+    yield(form_generator) if block_given?
+    form_generator.close_form
+    form_generator.generated_fields.join("")
   end
 end
