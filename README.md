@@ -28,7 +28,7 @@ To use the gem firstly require it in your code by using:
 require "hexlet_code"
 ```
 
-To use method form_for which generates HTML form it's required to define a Struct and initialize an object with data.
+To use method `form_for` which generates HTML form it's required to define a `Struct` and initialize an object with data.
 
 ```ruby
 User = Struct.new(:name, :job, keyword_init: true)
@@ -49,7 +49,7 @@ end
 # </form>
 ```
 
-Input method passed in block has an option to send a type of input you want to generate.
+A method `input` passed in a block has an option to send a type of input you want to generate.
 
 ```ruby
 User = Struct.new(:name, :job, :gender, keyword_init: true)
@@ -66,7 +66,7 @@ end
 # </form>
 ```
 
-If the object has no field to call for NoMethodError will be returned.
+If the object has no field to call for, `NoMethodError` will be returned.
 
 ```ruby
 html = HexletCode.form_for user, url: '/users' do |f|
