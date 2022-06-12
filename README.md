@@ -2,7 +2,7 @@
 
 # HexletCode
 
-HexletCode is a DSL form generator that simplifies your forms generation similar to SimpleForm.
+**HexletCode** is a DSL form generator that simplifies your forms generation similar to SimpleForm.
 
 ## Installation
 
