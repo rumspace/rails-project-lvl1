@@ -66,6 +66,17 @@ end
 # </form>
 ```
 
+If the object has no field to call for NoMethodError will be returned.
+
+```ruby
+html = HexletCode.form_for user, url: '/users' do |f|
+  f.input :name
+  f.input :job, as: :text
+  # Поля age у пользователя нет
+  f.input :age
+end
+# =>  `public_send': undefined method `age' for #<struct User id=nil, name=nil, job=nil> (NoMethodError)
+```
 
 ## Development
 
