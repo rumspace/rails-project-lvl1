@@ -2,8 +2,7 @@
 
 # HexletCode
 
-DSL form generator. BLAHBLAH
-This gem simplifies your forms generation similar to SimpleForm.
+HexletCode is a DSL form generator that simplifies your forms generation similar to SimpleForm.
 
 ## Installation
 
@@ -23,11 +22,28 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+
+
+User = Struct.new(:name, :job, keyword_init: true)
+user = User.new job: 'hexlet'
+
+HexletCode.form_for user do |f|
+  f.input :name
+  f.input :job
+  f.submit
+end
+
+# <form action="#" method="post">
+#   <label for="name">Name</label>
+#   <input name="name" type="text">
+#   <label for="job">Job</label>
+#   <input name="job" type="text" value="hexlet">
+#   <input name="commit" type="submit" value="Save">
+# </form>
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` or `make minitest` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
