@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-Dir["/hexlet_code/form_elements/*.rb"].each { |file| require file }
-
 require_relative "tag"
 
 # Generator of html forms
