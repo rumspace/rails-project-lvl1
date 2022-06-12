@@ -24,14 +24,14 @@ Or install it yourself as:
 
 
 
-User = Struct.new(:name, :job, keyword_init: true)
-user = User.new job: 'hexlet'
-
-HexletCode.form_for user do |f|
-  f.input :name
-  f.input :job
-  f.submit
-end
+$ User = Struct.new(:name, :job, keyword_init: true)
+$ user = User.new job: 'hexlet'
+$ 
+$ HexletCode.form_for user do |f|
+$   f.input :name
+$   f.input :job
+$  f.submit
+$ end
 
 # <form action="#" method="post">
 #   <label for="name">Name</label>
