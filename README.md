@@ -39,7 +39,6 @@ HexletCode.form_for user do |f|
   f.input :job
  f.submit
 end
-```
 
 # <form action="#" method="post">
 #   <label for="name">Name</label>
@@ -48,6 +47,25 @@ end
 #   <input name="job" type="text" value="hexlet">
 #   <input name="commit" type="submit" value="Save">
 # </form>
+```
+
+Input method passed in block has an option to send a type of input you want to generate.
+
+```ruby
+User = Struct.new(:name, :job, :gender, keyword_init: true)
+user = User.new name: 'rob', job: 'hexlet', gender: 'm'
+
+HexletCode.form_for user do |f|
+  f.input :name
+  f.input :job, as: :text
+end
+
+# <form action="#" method="post">
+#   <input name="name" type="text" value="rob">
+#   <textarea cols="20" rows="40" name="job">hexlet</textarea>
+# </form>
+```
+
 
 ## Development
 
