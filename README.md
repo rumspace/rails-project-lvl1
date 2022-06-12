@@ -66,7 +66,7 @@ end
 # </form>
 ```
 
-If the object has no field to call for, `NoMethodError` will be returned.
+If the object has no field to call for, `NoMethodError` will be raised.
 
 ```ruby
 html = HexletCode.form_for user, url: '/users' do |f|
