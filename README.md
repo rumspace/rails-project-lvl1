@@ -2,7 +2,7 @@
 
 # HexletCode
 
-**HexletCode** is a DSL form generator that simplifies your forms generation similar to SimpleForm.
+**HexletCode** is a HTML text form generator that simplifies your forms generation similar to SimpleForm.
 
 ## Installation
 
@@ -22,16 +22,24 @@ Or install it yourself as:
 
 ## Usage
 
+To use the gem firstly require it in your code by using:
 
+```ruby
+require "hexlet_code"
+```
 
-$ User = Struct.new(:name, :job, keyword_init: true)
-$ user = User.new job: 'hexlet'
-$ 
-$ HexletCode.form_for user do |f|
-$   f.input :name
-$   f.input :job
-$  f.submit
-$ end
+To use method form_for which generates HTML form it's required to define a Struct and initialize an object with data.
+
+```ruby
+User = Struct.new(:name, :job, keyword_init: true)
+user = User.new job: 'hexlet'
+ 
+HexletCode.form_for user do |f|
+  f.input :name
+  f.input :job
+ f.submit
+end
+```
 
 # <form action="#" method="post">
 #   <label for="name">Name</label>
