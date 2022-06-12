@@ -4,7 +4,7 @@ require_relative "../tag"
 
 # Form <submit> tag generator
 class FormSubmit
-  def self.build
-    Tag.build("input", name: "commit", type: "submit", value: "Save")
+  def self.build(name = "commit")
+    Tag.build("input", name: name, type: "submit", value: "Save")
   end
 end
