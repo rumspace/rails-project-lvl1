@@ -42,8 +42,8 @@ class FormGenerator
     end
   end
 
-  def submit(name = "commit")
-    @generated_fields << FormSubmit.build(name)
+  def submit(value = "Save")
+    @generated_fields << FormSubmit.build(value)
   end
 
   def close_form
