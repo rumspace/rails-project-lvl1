@@ -30,15 +30,13 @@ class FormGenerator
     FormLabel.build(field)
   end
 
-  def input(field, options = nil)
+  def input(field, options = {})
     @generated_fields << label(field)
-    @generated_fields << if !options.nil? && options[:as] == :text
+    @generated_fields << if options[:as] == :text
                            FormTextarea.build(field, @entity.public_send(field), options[:cols] || nil,
                                               options[:rows] || nil)
-                         elsif !options.nil?
-                           FormInput.build(field, @entity.public_send(field) || nil, options[:class] || nil)
                          else
-                           FormInput.build(field, @entity.public_send(field) || nil)
+                           FormInput.build(field, @entity.public_send(field) || nil, options[:class] || nil)
                          end
   end
 

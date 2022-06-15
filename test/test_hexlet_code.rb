@@ -52,7 +52,7 @@ class TestHexletCode < Minitest::Test
 
     form_string = HexletCode.form_for user do |f|
       f.input :name, class: "user-input"
-      f.input :job
+      f.input :job, as: :text
       f.submit
     end
 
