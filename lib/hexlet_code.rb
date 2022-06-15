@@ -14,6 +14,6 @@ module HexletCode
     form_generator.open_form(url)
     yield(form_generator) if block_given?
     form_generator.close_form
-    form_generator.generated_fields.join('')
+    form_generator.generated_fields.join
   end
 end

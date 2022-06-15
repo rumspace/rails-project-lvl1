@@ -17,10 +17,10 @@ class TestHexletCode < Minitest::Test
     user = User.new name: 'rob'
 
     assert do
-      HexletCode.form_for(user) { |f| } == @fixtures[0]
+      HexletCode.form_for(user) == @fixtures[0]
     end
     assert do
-      HexletCode.form_for(user, url: '/users') { |f| } == @fixtures[1]
+      HexletCode.form_for(user, url: '/users') == @fixtures[1]
     end
   end
 
