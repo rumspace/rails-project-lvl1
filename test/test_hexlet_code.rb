@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "test_helper"
+require 'test_helper'
 
 class TestHexletCode < Minitest::Test
   User = Struct.new(:name, :job, :gender, keyword_init: true)
@@ -14,18 +14,18 @@ class TestHexletCode < Minitest::Test
   end
 
   def test_form_for
-    user = User.new name: "rob"
+    user = User.new name: 'rob'
 
     assert do
       HexletCode.form_for(user) { |f| } == @fixtures[0]
     end
     assert do
-      HexletCode.form_for(user, url: "/users") { |f| } == @fixtures[1]
+      HexletCode.form_for(user, url: '/users') { |f| } == @fixtures[1]
     end
   end
 
   def test_form_input
-    user = User.new name: "rob", job: "hexlet", gender: "m"
+    user = User.new name: 'rob', job: 'hexlet', gender: 'm'
 
     form_string = HexletCode.form_for user do |f|
       f.input :name
@@ -35,10 +35,10 @@ class TestHexletCode < Minitest::Test
   end
 
   def test_form_input_error
-    user = User.new name: "rob", job: "hexlet", gender: "m"
+    user = User.new name: 'rob', job: 'hexlet', gender: 'm'
 
     assert_raises(NoMethodError) do
-      HexletCode.form_for user, url: "/users" do |f|
+      HexletCode.form_for user, url: '/users' do |f|
         f.input :name
         f.input :job, as: :text
         f.input :age # Поля age у пользователя нет
@@ -48,10 +48,10 @@ class TestHexletCode < Minitest::Test
   end
 
   def test_form_label_submit
-    user = User.new job: "hexlet"
+    user = User.new job: 'hexlet'
 
     form_string = HexletCode.form_for user do |f|
-      f.input :name, class: "user-input"
+      f.input :name, class: 'user-input'
       f.input :job, as: :text
       f.submit
     end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "tag"
+require_relative 'tag'
 
 # Generator of html forms
 class FormGenerator
@@ -14,16 +14,16 @@ class FormGenerator
   end
 
   def setup_autoload
-    autoload(:FormLabel, "hexlet_code/form_elements/form_label.rb")
-    autoload(:FormSubmit, "hexlet_code/form_elements/form_submit.rb")
-    autoload(:FormInput, "hexlet_code/form_elements/form_input.rb")
-    autoload(:FormTextarea, "hexlet_code/form_elements/form_textarea.rb")
+    autoload(:FormLabel, 'hexlet_code/form_elements/form_label.rb')
+    autoload(:FormSubmit, 'hexlet_code/form_elements/form_submit.rb')
+    autoload(:FormInput, 'hexlet_code/form_elements/form_input.rb')
+    autoload(:FormTextarea, 'hexlet_code/form_elements/form_textarea.rb')
   end
 
   def open_form(url)
-    action = url ? (url[:url]).to_s : "#"
-    method = "post"
-    @generated_fields << [Tag.build("form", action: action, method: method)]
+    action = url ? (url[:url]).to_s : '#'
+    method = 'post'
+    @generated_fields << [Tag.build('form', action: action, method: method)]
   end
 
   def label(field)
@@ -40,11 +40,11 @@ class FormGenerator
                          end
   end
 
-  def submit(value = "Save")
+  def submit(value = 'Save')
     @generated_fields << FormSubmit.build(value)
   end
 
   def close_form
-    @generated_fields << Tag.build("/form")
+    @generated_fields << Tag.build('/form')
   end
 end

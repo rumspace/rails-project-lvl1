@@ -16,6 +16,6 @@ class Tag
                       }
     end
 
-    "<#{elements.join(" ")}>"
+    "<#{elements.join(' ')}>"
   end
 end
