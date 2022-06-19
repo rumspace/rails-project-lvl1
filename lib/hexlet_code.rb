@@ -9,11 +9,13 @@ module HexletCode
   # form generator
   def self.form_for(user, url = nil)
     autoload(:FormGenerator, 'hexlet_code/form_generator.rb')
-
     form_generator = FormGenerator.new(user)
-    form_generator.open_form(url)
-    yield(form_generator) if block_given?
-    form_generator.close_form
-    form_generator.generated_fields.join
+
+    action = url ? (url[:url]).to_s : '#'
+    method = 'post'
+    Tag.build('form', action: action, method: method) do
+      yield(form_generator) if block_given?
+      form_generator.generated_tags.join
+    end
   end
 end

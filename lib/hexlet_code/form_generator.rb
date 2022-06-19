@@ -4,47 +4,36 @@ require_relative 'tag'
 
 # Generator of html forms
 class FormGenerator
-  attr_accessor :generated_fields
+  def self.setup_autoload
+    autoload(:Label, 'hexlet_code/form_elements/label.rb')
+    autoload(:Submit, 'hexlet_code/form_elements/submit.rb')
+    autoload(:Input, 'hexlet_code/form_elements/input.rb')
+    autoload(:Text, 'hexlet_code/form_elements/text.rb')
+  end
+
+  attr_accessor :generated_tags
 
   def initialize(entity)
-    setup_autoload
+    self.class.setup_autoload
 
     @entity = entity
-    @generated_fields = []
+    @generated_tags = []
   end
 
-  def setup_autoload
-    autoload(:FormLabel, 'hexlet_code/form_elements/form_label.rb')
-    autoload(:FormSubmit, 'hexlet_code/form_elements/form_submit.rb')
-    autoload(:FormInput, 'hexlet_code/form_elements/form_input.rb')
-    autoload(:FormTextarea, 'hexlet_code/form_elements/form_textarea.rb')
-  end
-
-  def open_form(url)
-    action = url ? (url[:url]).to_s : '#'
-    method = 'post'
-    @generated_fields << [Tag.build('form', action: action, method: method)]
-  end
-
-  def label(field)
-    FormLabel.build(field)
+  def element(symbol)
+    self.class.const_get(symbol.capitalize)
   end
 
   def input(field, options = {})
-    @generated_fields << label(field)
-    @generated_fields << if options[:as] == :text
-                           FormTextarea.build(field, @entity.public_send(field), options[:cols] || nil,
-                                              options[:rows] || nil)
-                         else
-                           FormInput.build(field, @entity.public_send(field) || nil, options[:class] || nil)
-                         end
+    label(field)
+    @generated_tags << element(options[:as] || :input).build(field, @entity.public_send(field), options)
+  end
+
+  def label(field)
+    @generated_tags << element(:label).build(field)
   end
 
   def submit(value = 'Save')
-    @generated_fields << FormSubmit.build(value)
-  end
-
-  def close_form
-    @generated_fields << Tag.build('/form')
+    @generated_tags << element(:submit).build(value)
   end
 end

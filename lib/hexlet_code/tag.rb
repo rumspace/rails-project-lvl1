@@ -2,20 +2,21 @@
 
 # HTML tag generator
 class Tag
-  def self.build(*params)
+  PAIRED_TAGS = %w[label textarea form button select optgroup fieldset output].freeze
+
+  def self.build(tag_name, **attributes)
     # example input: "input", type: "submit", value: "Save"
     # example output: '<input type="submit" value="Save">'
-    return nil if params.nil?
+    return nil if attributes.nil?
 
-    elements = [params.shift] # tag name
+    tag = [tag_name]
 
-    unless params.empty?
-      params = params.first
-      elements.concat params.each_with_object([]) { |attribute, result|
-                        result << "#{attribute.first}=\"#{attribute.last}\"" unless attribute.last.nil?
-                      }
+    unless attributes.empty?
+      tag.concat attributes.each_with_object([]) { |attribute, result|
+                   result << "#{attribute.first}=\"#{attribute.last}\"" unless attribute.last.nil?
+                 }
     end
 
-    "<#{elements.join(' ')}>"
+    "<#{tag.join(' ')}>#{yield if block_given?}#{"</#{tag_name}>" if PAIRED_TAGS.include?(tag_name)}"
   end
 end

@@ -3,8 +3,10 @@
 require_relative '../tag'
 
 # Form <label> tag generator
-class FormLabel
+class Label
+  TAG_NAME = 'label'
+
   def self.build(field)
-    "#{Tag.build('label', for: field)}#{field.capitalize}#{Tag.build('/label')}"
+    Tag.build(TAG_NAME, for: field) { field.capitalize.to_s }
   end
 end
