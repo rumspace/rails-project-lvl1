@@ -5,10 +5,6 @@ class Tag
   PAIRED_TAGS = %w[label textarea form button select optgroup fieldset output].freeze
 
   def self.build(tag_name, **attributes)
-    # example input: "input", type: "submit", value: "Save"
-    # example output: '<input type="submit" value="Save">'
-    return nil if attributes.nil?
-
     tag = [tag_name]
 
     unless attributes.empty?

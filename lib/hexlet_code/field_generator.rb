@@ -2,8 +2,8 @@
 
 require_relative 'tag'
 
-# Generator of html forms
-class FormGenerator
+# Generator of form fields
+class FieldGenerator
   def self.setup_autoload
     autoload(:Label, 'hexlet_code/form_elements/label.rb')
     autoload(:Submit, 'hexlet_code/form_elements/submit.rb')
@@ -11,13 +11,13 @@ class FormGenerator
     autoload(:Text, 'hexlet_code/form_elements/text.rb')
   end
 
-  attr_accessor :generated_tags
+  attr_accessor :fields
 
   def initialize(entity)
     self.class.setup_autoload
 
     @entity = entity
-    @generated_tags = []
+    @fields = []
   end
 
   def element(symbol)
@@ -26,14 +26,14 @@ class FormGenerator
 
   def input(field, options = {})
     label(field)
-    @generated_tags << element(options[:as] || :input).build(field, @entity.public_send(field), options)
+    @fields << element(options[:as] || :input).build(field, @entity.public_send(field), options)
   end
 
   def label(field)
-    @generated_tags << element(:label).build(field)
+    @fields << element(:label).build(field)
   end
 
   def submit(value = 'Save')
-    @generated_tags << element(:submit).build(value)
+    @fields << element(:submit).build(value)
   end
 end

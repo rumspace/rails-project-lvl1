@@ -8,14 +8,15 @@ module HexletCode
 
   # form generator
   def self.form_for(user, url = nil)
-    autoload(:FormGenerator, 'hexlet_code/form_generator.rb')
-    form_generator = FormGenerator.new(user)
+    autoload(:FieldGenerator, 'hexlet_code/field_generator.rb')
+    field_generator = FieldGenerator.new(user)
 
+    tag_name = 'form'
     action = url ? (url[:url]).to_s : '#'
     method = 'post'
-    Tag.build('form', action: action, method: method) do
-      yield(form_generator) if block_given?
-      form_generator.generated_tags.join
+    Tag.build(tag_name, action: action, method: method) do
+      yield(field_generator) if block_given?
+      field_generator.fields.join
     end
   end
 end

@@ -6,7 +6,7 @@ class TestHexletCode < Minitest::Test
   User = Struct.new(:name, :job, :gender, keyword_init: true)
 
   def setup
-    @fixtures = TestHelper.load_test_fixtures
+    @test_fixtures = TestHelper.load_test_fixtures
   end
 
   def test_that_it_has_a_version_number
@@ -17,10 +17,10 @@ class TestHexletCode < Minitest::Test
     user = User.new name: 'rob'
 
     assert do
-      HexletCode.form_for(user) == @fixtures[0]
+      HexletCode.form_for(user) == @test_fixtures[0]
     end
     assert do
-      HexletCode.form_for(user, url: '/users') == @fixtures[1]
+      HexletCode.form_for(user, url: '/users') == @test_fixtures[1]
     end
   end
 
@@ -31,7 +31,7 @@ class TestHexletCode < Minitest::Test
       f.input :name
       f.input :job, as: :text, cols: 20, rows: 30
     end
-    assert { form_string == @fixtures[2] }
+    assert { form_string == @test_fixtures[2] }
   end
 
   def test_form_input_error
@@ -47,7 +47,7 @@ class TestHexletCode < Minitest::Test
     end
   end
 
-  def test_form_label_submit
+  def test_form_submit
     user = User.new job: 'hexlet'
 
     form_string = HexletCode.form_for user do |f|
@@ -56,6 +56,6 @@ class TestHexletCode < Minitest::Test
       f.submit
     end
 
-    assert { form_string == @fixtures[3] }
+    assert { form_string == @test_fixtures[3] }
   end
 end
