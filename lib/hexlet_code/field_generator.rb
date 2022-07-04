@@ -41,6 +41,6 @@ class FieldGenerator
     fields_array = @fields.each_with_object([]) do |field, result|
       result << Tag.build(field[:name], field[:attributes]) { field[:content] }
     end
-    fields_array.join('')
+    fields_array.join
   end
 end
