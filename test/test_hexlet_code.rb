@@ -3,11 +3,8 @@
 require 'test_helper'
 
 class TestHexletCode < Minitest::Test
+  PATH_FIXTURES = "#{File.dirname(__FILE__)}/fixtures".freeze
   User = Struct.new(:name, :job, :gender, keyword_init: true)
-
-  def setup
-    @test_fixtures = TestHelper.load_test_fixtures
-  end
 
   def test_that_it_has_a_version_number
     refute_nil ::HexletCode::VERSION
@@ -17,10 +14,10 @@ class TestHexletCode < Minitest::Test
     user = User.new name: 'rob'
 
     assert do
-      HexletCode.form_for(user) == @test_fixtures[0]
+      HexletCode.form_for(user) == File.read("#{PATH_FIXTURES}/html_test_form_for1.html").delete("\r\n")
     end
     assert do
-      HexletCode.form_for(user, url: '/users') == @test_fixtures[1]
+      HexletCode.form_for(user, url: '/users') == File.read("#{PATH_FIXTURES}/html_test_form_for2.html").delete("\r\n")
     end
   end
 
@@ -31,7 +28,7 @@ class TestHexletCode < Minitest::Test
       f.input :name
       f.input :job, as: :text, cols: 20, rows: 30
     end
-    assert { form_string == @test_fixtures[2] }
+    assert { form_string == File.read("#{PATH_FIXTURES}/html_test_form_input.html").delete("\r\n") }
   end
 
   def test_form_input_error
@@ -56,6 +53,6 @@ class TestHexletCode < Minitest::Test
       f.submit
     end
 
-    assert { form_string == @test_fixtures[3] }
+    assert { form_string == File.read("#{PATH_FIXTURES}/html_test_form_form_label_submit.html").delete("\r\n") }
   end
 end
