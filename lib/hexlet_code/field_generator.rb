@@ -36,4 +36,11 @@ class FieldGenerator
   def submit(value = 'Save')
     @fields << element(:submit).build(value)
   end
+
+  def generate_html
+    fields_array = @fields.each_with_object([]) do |field, result|
+      result << Tag.build(field[:name], field[:attributes]) { field[:content] }
+    end
+    fields_array.join('')
+  end
 end

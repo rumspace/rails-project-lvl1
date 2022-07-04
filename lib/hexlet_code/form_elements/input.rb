@@ -8,6 +8,9 @@ class Input
   TYPE = 'text'
 
   def self.build(field, value, options)
-    Tag.build(TAG_NAME, name: field, type: TYPE, value: value, class: options[:class] || nil)
+    input = {}
+    input[:name] = TAG_NAME
+    input[:attributes] = { name: field, type: TYPE, value: value, class: options[:class] || nil }
+    input
   end
 end

@@ -4,7 +4,7 @@
 class Tag
   PAIRED_TAGS = %w[label textarea form button select optgroup fieldset output].freeze
 
-  def self.build(tag_name, **attributes)
+  def self.build(tag_name, attributes)
     tag = {}
     tag[:name] = tag_name
     tag[:attributes] = attributes.compact

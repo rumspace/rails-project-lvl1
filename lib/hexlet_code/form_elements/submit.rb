@@ -9,6 +9,9 @@ class Submit
   TYPE = 'submit'
 
   def self.build(value)
-    Tag.build(TAG_NAME, name: NAME, type: TYPE, value: value)
+    submit = {}
+    submit[:name] = TAG_NAME
+    submit[:attributes] = { name: NAME, type: TYPE, value: value }
+    submit
   end
 end

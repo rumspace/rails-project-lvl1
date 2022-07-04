@@ -9,8 +9,10 @@ class Text
   ROWS_DEFAULT = 50
 
   def self.build(field, value, options)
-    Tag.build(TAG_NAME, cols: options[:cols] || COLS_DEFAULT, rows: options[:rows] || ROWS_DEFAULT, name: field) do
-      value
-    end
+    text = {}
+    text[:name] = TAG_NAME
+    text[:attributes] = { cols: options[:cols] || COLS_DEFAULT, rows: options[:rows] || ROWS_DEFAULT, name: field }
+    text[:content] = value
+    text
   end
 end

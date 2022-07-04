@@ -28,7 +28,10 @@ class TestHexletCode < Minitest::Test
       f.input :name
       f.input :job, as: :text, cols: 20, rows: 30
     end
-    assert { form_string == File.read("#{PATH_FIXTURES}/html_test_form_input.html").delete("\r\n") }
+
+    assert do
+      form_string == File.read("#{PATH_FIXTURES}/html_test_form_input.html").delete("\r\n")
+    end
   end
 
   def test_form_input_error
@@ -53,6 +56,8 @@ class TestHexletCode < Minitest::Test
       f.submit
     end
 
-    assert { form_string == File.read("#{PATH_FIXTURES}/html_test_form_form_label_submit.html").delete("\r\n") }
+    assert do
+      form_string == File.read("#{PATH_FIXTURES}/html_test_form_form_label_submit.html").delete("\r\n")
+    end
   end
 end

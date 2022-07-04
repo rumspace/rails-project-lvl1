@@ -16,7 +16,7 @@ module HexletCode
     method = 'post'
     Tag.build(tag_name, action: action, method: method) do
       yield(field_generator) if block_given?
-      field_generator.fields.join
+      field_generator.generate_html
     end
   end
 end
