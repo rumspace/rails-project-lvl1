@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../tag'
-
 # Form <label> tag generator
 class Label
   TAG_NAME = 'label'

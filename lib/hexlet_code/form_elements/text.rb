@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../tag'
-
 # Form <textarea> tag generator
 class Text
   TAG_NAME = 'textarea'
